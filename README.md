@@ -20,6 +20,10 @@
 
 
 ## Użyte biblioteki
-BeautifulSoup
-Requests
-Json
+- BeautifulSoup
+- Requests
+- Json
+- Os
+- Pandas
+- Numpy
+- Matplotlib

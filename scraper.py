@@ -1,3 +1,4 @@
+import os
 import json
 import requests
 from bs4 import BeautifulSoup
@@ -17,7 +18,7 @@ def get_element(ancestor, selector = None, attribute = None, return_list = False
 selectors = {
         "opinion-id":  [None, "data-entry-id"],
         "author": ["span.user-post__author-name"],
-        "recomendation": ["span.user-post__author-recomendation > em"],
+        "recommendation": ["span.user-post__author-recomendation > em"],
         "score": ["span.user-post__score-count"],
         "purchased": ["div.review-pz"],
         "published_at": ["span.user-post__published > time:nth-child(1)","datetime"],
@@ -57,6 +58,11 @@ while(url):
         url = None
 
 print(len(all_opinions))
+
+try:
+    os.mkdir(path="./opinions")
+except FileExistsError:
+    pass
 
 with open(f"./opinions/{product_code}.json", "w", encoding="UTF-8") as jf:
     json.dump(all_opinions, jf, indent=4, ensure_ascii=False)
